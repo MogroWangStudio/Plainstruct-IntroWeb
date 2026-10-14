@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>来认识一下『素构 Plainstruct』。</title>
-  <meta name="description" content="素构 Plainstruct 是一个本地运行的静态文档网站创建器。在文件夹里写 Markdown，一键构建、本地预览、发布到 GitHub Pages——不需要命令行，不需要后端。">
+  <meta name="description" content="素构 Plainstruct 是一个本地运行的静态网站创建器，文档站与博客皆宜。在文件夹里写 Markdown，一键构建、本地预览、发布到 GitHub Pages——不需要命令行，不需要后端。">
   <meta name="theme-color" content="#f7f7f7">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <style>
@@ -2791,6 +2791,249 @@
       border-left: 1px solid var(--am-line)
     }
 
+    /* 活动栏禁用态(撤销/重做,无历史时) */
+    .am-act-btn[disabled] {
+      opacity: .35;
+      pointer-events: none
+    }
+
+    /* 资产页:左网格 + 右详情 */
+    .am-abody {
+      display: flex;
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      gap: 0
+    }
+
+    .am-agrid {
+      flex: 1;
+      min-width: 0;
+      overflow-y: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+      gap: 14px;
+      align-content: start
+    }
+
+    .am-acard {
+      border: 1px solid var(--am-line);
+      border-radius: 8px;
+      background: var(--am-surface);
+      padding: 8px;
+      cursor: pointer;
+      transition: border-color 160ms var(--ease), box-shadow 160ms var(--ease)
+    }
+
+    .am-acard:hover {
+      border-color: var(--am-ink-3)
+    }
+
+    .am-acard.on {
+      border-color: var(--am-accent);
+      box-shadow: 0 0 0 1px var(--am-accent)
+    }
+
+    .am-athumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 76px;
+      border-radius: 6px;
+      background: var(--am-surface-2);
+      color: var(--am-ink-3);
+      margin-bottom: 8px
+    }
+
+    .am-acard .nm {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--am-ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .am-acard .v,
+    .am-adetail .v {
+      margin: 2px 0 0;
+      font-size: 11px;
+      color: var(--am-ink-3)
+    }
+
+    .am-adetail {
+      width: 232px;
+      flex: none;
+      border-left: 1px solid var(--am-line);
+      padding: 20px;
+      overflow-y: auto
+    }
+
+    .am-aprev {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 120px;
+      border: 1px solid var(--am-line);
+      border-radius: 8px;
+      background: var(--am-surface-2);
+      color: var(--am-ink-3);
+      margin-bottom: 12px
+    }
+
+    .am-adetail .nm {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--am-ink)
+    }
+
+    .am-alabel {
+      margin: 16px 0 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: var(--am-ink-3)
+    }
+
+    .am-aref {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--am-ink-2)
+    }
+
+    /* 插件页:卡片列表 */
+    .am-pscrollpage {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto
+    }
+
+    .am-pwrap {
+      max-width: 660px;
+      padding: 20px
+    }
+
+    .am-pgrid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 4px
+    }
+
+    .am-pcard {
+      border: 1px solid var(--am-line);
+      border-radius: 8px;
+      background: var(--am-surface);
+      padding: 14px 16px
+    }
+
+    .am-pcard header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px
+    }
+
+    .am-pcard .nm {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--am-ink)
+    }
+
+    .am-pcard .vv {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: var(--am-ink-3);
+      background: var(--am-surface-2);
+      border-radius: 4px;
+      padding: 1px 5px;
+      vertical-align: 1px
+    }
+
+    .am-pcard .dv {
+      margin: 1px 0 0;
+      font-size: 11px;
+      color: var(--am-ink-3)
+    }
+
+    .am-pcard footer {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px
+    }
+
+    /* 开关(插件启用态) */
+    .am-switch {
+      margin-left: auto;
+      width: 34px;
+      height: 20px;
+      border-radius: 10px;
+      background: var(--am-surface-3);
+      border: 1px solid var(--am-line);
+      position: relative;
+      flex: none;
+      transition: background-color 160ms var(--ease)
+    }
+
+    .am-switch i {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 18%);
+      transition: transform 160ms var(--ease)
+    }
+
+    .am-switch.on {
+      background: var(--am-accent);
+      border-color: var(--am-accent)
+    }
+
+    .am-switch.on i {
+      transform: translateX(14px)
+    }
+
+    /* 发布页账户类型分段控件 */
+    .am-seg {
+      display: inline-flex;
+      padding: 2px;
+      border: 1px solid var(--am-line);
+      border-radius: 8px;
+      background: var(--am-surface-2);
+      gap: 2px
+    }
+
+    .am-seg button {
+      border: 0;
+      background: none;
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      color: var(--am-ink-2);
+      cursor: pointer;
+      transition: background-color 160ms var(--ease), color 160ms var(--ease)
+    }
+
+    .am-seg button.on {
+      background: var(--am-surface);
+      color: var(--am-ink);
+      box-shadow: 0 1px 2px rgb(0 0 0 / 8%)
+    }
+
+    .am-stat small {
+      font-size: .6em;
+      font-weight: 600;
+      color: var(--am-ink-3)
+    }
+
     @media (max-width:680px) {
       .app-viewport {
         overflow-x: auto;
@@ -2896,11 +3139,11 @@
   <main id="top">
     <h1 data-reveal data-zh="边写，边建。" data-en="Write, and it builds.">边写，边建。</h1>
     <p class="lead" data-reveal style="--i:1"
-      data-zh="素构是一个本地运行的静态文档网站创建器。
+      data-zh="素构是一个本地运行的静态网站创建器，文档站与博客皆宜。
 在文件夹里写 Markdown，一键构建、本地预览、发布到 GitHub Pages。"
-      data-en="Plainstruct is a local-first static wiki site creator.
+      data-en="Plainstruct is a local-first static site creator, for docs and blogs alike.
 Write Markdown in folders, build with one click, preview locally, publish to GitHub Pages.">
-      素构是一个本地运行的静态文档网站创建器。
+      素构是一个本地运行的静态网站创建器，文档站与博客皆宜。
 在文件夹里写 Markdown，一键构建、本地预览、发布到 GitHub Pages。</p>
 
     <div class="cta" data-reveal style="--i:2">
@@ -2935,15 +3178,23 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                 <nav class="am-act" aria-label="导航">
                   <button class="am-act-btn on" type="button" data-icon="doc" data-size="19" data-vp="editor"
                     data-zh-title="内容" data-en-title="Content" aria-label="内容"></button>
+                  <button class="am-act-btn" type="button" data-icon="assets" data-size="19" data-vp="assets"
+                    data-zh-title="资产" data-en-title="Assets" aria-label="资产"></button>
                   <button class="am-act-btn" type="button" data-icon="sliders" data-size="19" data-vp="site"
                     data-zh-title="站点" data-en-title="Site" aria-label="站点"></button>
-                  <button class="am-act-btn" type="button" data-icon="box" data-size="19" data-vp="build"
-                    data-zh-title="构建" data-en-title="Build" aria-label="构建"></button>
                   <button class="am-act-btn" type="button" data-icon="palette" data-size="19" data-vp="theme"
                     data-zh-title="主题" data-en-title="Theme" aria-label="主题"></button>
+                  <button class="am-act-btn" type="button" data-icon="puzzle" data-size="19" data-vp="plugins"
+                    data-zh-title="插件" data-en-title="Plugins" aria-label="插件"></button>
+                  <button class="am-act-btn" type="button" data-icon="box" data-size="19" data-vp="build"
+                    data-zh-title="构建" data-en-title="Build" aria-label="构建"></button>
                   <button class="am-act-btn" type="button" data-icon="upload" data-size="19" data-vp="publish"
                     data-zh-title="发布" data-en-title="Publish" aria-label="发布"></button>
                   <span class="am-act-gap"></span>
+                  <button class="am-act-btn" type="button" data-icon="undo" data-size="18" disabled
+                    data-zh-title="撤销 (Ctrl+Z)" data-en-title="Undo (Ctrl+Z)" aria-label="撤销"></button>
+                  <button class="am-act-btn" type="button" data-icon="redo" data-size="18" disabled
+                    data-zh-title="重做 (Ctrl+Shift+Z)" data-en-title="Redo (Ctrl+Shift+Z)" aria-label="重做"></button>
                   <button class="am-act-btn" type="button" data-icon="settings" data-size="18"
                     data-zh-title="设置" data-en-title="Settings" aria-label="设置"></button>
                   <button class="am-act-btn" type="button" data-icon="info" data-size="18"
@@ -3007,7 +3258,7 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                 <section class="am-main">
                   <div class="am-view" data-vp="editor">
                   <header class="am-dochead">
-                    <span class="am-doc-title" id="amDocTitle">首页</span>
+                    <span class="am-doc-title" id="amDocTitle">index.md</span>
                     <span class="am-saved">
                       <i class="am-ic" data-icon="check" data-size="13" aria-hidden="true"></i>
                       <span data-zh="已保存" data-en="Saved">已保存</span>
@@ -3020,6 +3271,8 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                       <button class="am-mode" type="button" data-mode="preview" data-icon="eye" data-size="15"
                         data-zh-title="仅预览" data-en-title="Preview only" aria-label="仅预览"></button>
                     </div>
+                    <button class="am-mode" type="button" data-icon="window" data-size="15"
+                      data-zh-title="独立预览窗口" data-en-title="Preview window" aria-label="独立预览窗口"></button>
                   </header>
 
                   <div class="am-split" id="amSplit" data-mode="split">
@@ -3048,13 +3301,26 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                           data-zh-title="插入链接" data-en-title="Insert link" aria-label="插入链接"></button>
                         <button class="am-tb" type="button" data-icon="image"
                           data-zh-title="插入图片" data-en-title="Insert image" aria-label="插入图片"></button>
+                        <button class="am-tb" type="button" data-icon="imgAlignLeft"
+                          data-zh-title="图片左对齐" data-en-title="Image left" aria-label="图片左对齐"></button>
+                        <button class="am-tb" type="button" data-icon="imgAlignCenter"
+                          data-zh-title="图片居中" data-en-title="Image center" aria-label="图片居中"></button>
+                        <button class="am-tb" type="button" data-icon="imgAlignRight"
+                          data-zh-title="图片右对齐" data-en-title="Image right" aria-label="图片右对齐"></button>
+                        <span class="am-tsep"></span>
                         <button class="am-tb" type="button" data-icon="squareCode"
                           data-zh-title="代码块" data-en-title="Code block" aria-label="代码块"></button>
-                        <span class="am-tsep"></span>
                         <button class="am-tb" type="button" data-icon="table"
                           data-zh-title="插入表格" data-en-title="Insert table" aria-label="插入表格"></button>
                         <button class="am-tb" type="button" data-icon="minus"
                           data-zh-title="插入分割线" data-en-title="Insert divider" aria-label="插入分割线"></button>
+                        <span class="am-tsep"></span>
+                        <button class="am-tb" type="button" data-icon="alignLeft"
+                          data-zh-title="文字左对齐" data-en-title="Text left" aria-label="文字左对齐"></button>
+                        <button class="am-tb" type="button" data-icon="alignCenter"
+                          data-zh-title="文字居中" data-en-title="Text center" aria-label="文字居中"></button>
+                        <button class="am-tb" type="button" data-icon="alignRight"
+                          data-zh-title="文字右对齐" data-en-title="Text right" aria-label="文字右对齐"></button>
                       </div>
                       <div class="am-codescroll" id="amCodeScroll">
                         <pre class="am-code am-fade" id="amCode"></pre>
@@ -3096,7 +3362,66 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                   </div>
                   </div>
 
-                  <!-- 站点设置 -->
+                  <!-- 资产 -->
+                  <div class="am-view" data-vp="assets" hidden>
+                    <header class="am-vhead">
+                      <div style="min-width:0">
+                        <p class="t" data-zh="资产" data-en="Assets">资产</p>
+                        <p class="s" data-zh="站点 asset 文件夹里的图片与文件,统一管理、拖入正文即用。"
+                          data-en="Images and files in the site's asset folder, ready to drag into any document.">
+                        </p>
+                      </div>
+                      <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+                        <button class="am-btn am-btn-secondary" type="button"><i class="am-ic" data-icon="download"
+                            data-size="15" aria-hidden="true"></i><span data-zh="导入文件"
+                            data-en="Import files">导入文件</span></button>
+                      </div>
+                    </header>
+                    <div class="am-bbody">
+                      <section class="am-abody">
+                        <div class="am-agrid">
+                          <div class="am-acard on">
+                            <div class="am-athumb"><i class="am-ic" data-icon="image" data-size="22"
+                                aria-hidden="true"></i></div>
+                            <p class="nm">cover-lake.png</p>
+                            <p class="v">240 KB · 3 处引用</p>
+                          </div>
+                          <div class="am-acard">
+                            <div class="am-athumb"><i class="am-ic" data-icon="image" data-size="22"
+                                aria-hidden="true"></i></div>
+                            <p class="nm">hero-mountain.jpg</p>
+                            <p class="v">1.2 MB · 1 处引用</p>
+                          </div>
+                          <div class="am-acard">
+                            <div class="am-athumb"><i class="am-ic" data-icon="image" data-size="22"
+                                aria-hidden="true"></i></div>
+                            <p class="nm">diagram-arch.png</p>
+                            <p class="v">86 KB · 2 处引用</p>
+                          </div>
+                          <div class="am-acard">
+                            <div class="am-athumb"><i class="am-ic" data-icon="assets" data-size="22"
+                                aria-hidden="true"></i></div>
+                            <p class="nm">attachment.pdf</p>
+                            <p class="v">312 KB · 未引用</p>
+                          </div>
+                        </div>
+                        <aside class="am-adetail">
+                          <div class="am-aprev"><i class="am-ic" data-icon="image" data-size="30"
+                              aria-hidden="true"></i></div>
+                          <p class="nm">cover-lake.png</p>
+                          <p class="v">asset/cover-lake.png</p>
+                          <p class="v" data-zh="240 KB · 240 万像素" data-en="240 KB · 2.4 MP">240 KB · 240 万像素</p>
+                          <h3 class="am-alabel" data-zh="引用文档" data-en="Referenced by">引用文档</h3>
+                          <p class="am-aref" data-zh="guide/quickstart.md、blog/hello.md" data-en="guide/quickstart.md, blog/hello.md">
+                            guide/quickstart.md、blog/hello.md</p>
+                          <p class="am-fhint" style="margin-top:10px" data-zh="重命名图片时,引用文档中的路径会同步更新。"
+                            data-en="Renaming an asset updates every reference to it.">
+                          </p>
+                        </aside>
+                      </section>
+                    </div>
+                  </div>
+
                   <div class="am-view" data-vp="site" hidden>
                     <div class="am-scroll">
                       <div class="am-col am-vstack" style="gap:32px">
@@ -3104,6 +3429,15 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
 
                         <section class="am-panel am-p24">
                           <div class="am-fgap">
+                            <div>
+                              <label class="am-flabel" data-zh="站点类型" data-en="Site type">站点类型</label>
+                              <div class="am-select"><span data-zh="文档站点" data-en="Docs site">文档站点</span><i class="am-ic" data-icon="chevronDown" data-size="14"
+                                  aria-hidden="true"></i></div>
+                              <p class="am-fhint"
+                                data-zh="文档站点为侧栏目录导航,博客站点为文章流;主题列表按类型过滤。"
+                                data-en="Docs sites get a sidebar tree; blogs get an article stream. Themes are filtered by type.">
+                              </p>
+                            </div>
                             <div>
                               <label class="am-flabel" data-zh="站点名称" data-en="Site name">站点名称</label>
                               <input class="am-input" type="text" readonly data-zh-value="演示站点" data-en-value="Demo Site">
@@ -3131,7 +3465,7 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                               </p>
                             </div>
                             <div>
-                              <label class="am-flabel" data-zh="站点 Logo" data-en="Site logo">站点 Logo</label>
+                              <label class="am-flabel" data-zh="站点内 Logo" data-en="In-site logo">站点内 Logo</label>
                               <div style="display:flex;align-items:center;gap:16px">
                                 <div
                                   style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border:1px dashed var(--am-line);border-radius:8px">
@@ -3141,8 +3475,8 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                                     data-en="Choose image">选择图片</span></button>
                               </div>
                               <p class="am-fhint"
-                                data-zh="可选,PNG / SVG / JPG / WebP,显示在站点侧栏顶部,并作为所有页面的收藏夹图标。"
-                                data-en="Optional. PNG / SVG / JPG / WebP, shown at the top of the site sidebar and used as the favicon of every page.">
+                                data-zh="显示在站点页面里;站点外图标只用于浏览器标签页与收藏夹,两者独立设置。"
+                                data-en="Shown inside the site. A separate favicon-only image can be set for the browser tab.">
                               </p>
                             </div>
                             <div style="display:flex;justify-content:flex-end">
@@ -3189,6 +3523,7 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                             <span class="am-stat"><b>5</b><span data-zh="页面" data-en="Pages">页面</span></span>
                             <span class="am-stat"><b>2</b><span data-zh="资源" data-en="Assets">资源</span></span>
                             <span class="am-stat"><b>38</b><span data-zh="耗时(ms)" data-en="Time (ms)">耗时(ms)</span></span>
+                            <span class="am-stat"><b>1.2<small> MB</small></b><span data-zh="总占用" data-en="Total size">总占用</span></span>
                           </div>
                         </div>
                         <div>
@@ -3258,12 +3593,12 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                     </header>
                     <div class="am-bbody">
                       <aside class="am-taside">
-                        <h2 class="am-tlabel" data-zh="内置" data-en="Built-in">内置</h2>
+                        <h2 class="am-tlabel" data-zh="文档主题" data-en="Docs themes">文档主题</h2>
                         <div class="am-tlist">
                           <div class="am-theme-item current">
                             <div style="flex:1;min-width:0">
                               <p class="nm">素构 · 浅色</p>
-                              <p class="v">v1.3.0</p>
+                              <p class="v">v4.0.0</p>
                             </div>
                             <span class="am-badge" data-zh="当前主题" data-en="Active theme">当前主题</span>
                             <div class="am-tact">
@@ -3277,7 +3612,7 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                           <div class="am-theme-item">
                             <div style="flex:1;min-width:0">
                               <p class="nm">素构 · 暗色</p>
-                              <p class="v">v1.3.0</p>
+                              <p class="v">v4.0.0</p>
                             </div>
                             <div class="am-tact">
                               <button class="am-ib" type="button" data-icon="check" data-size="14"
@@ -3287,6 +3622,57 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                                 aria-label="复制为新主题"></button>
                               <button class="am-ib" type="button" data-icon="download" data-size="14"
                                 data-zh-title="导出 ZIP" data-en-title="Export ZIP" aria-label="导出 ZIP"></button>
+                            </div>
+                          </div>
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">墨阅</p>
+                              <p class="v">v4.0.0</p>
+                            </div>
+                          </div>
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">终端</p>
+                              <p class="v">v4.0.0</p>
+                            </div>
+                          </div>
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">画廊</p>
+                              <p class="v">v4.0.0</p>
+                            </div>
+                          </div>
+                        </div>
+                        <h2 class="am-tlabel" style="margin-top:20px" data-zh="博客主题" data-en="Blog themes">博客主题</h2>
+                        <div class="am-tlist">
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">素记 · 浅色</p>
+                              <p class="v">v4.0.0</p>
+                            </div>
+                          </div>
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">素记 · 深色</p>
+                              <p class="v">v4.0.0</p>
+                            </div>
+                          </div>
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">专栏</p>
+                              <p class="v">v4.0.0</p>
+                            </div>
+                          </div>
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">日志</p>
+                              <p class="v">v4.0.0</p>
+                            </div>
+                          </div>
+                          <div class="am-theme-item">
+                            <div style="flex:1;min-width:0">
+                              <p class="nm">留白</p>
+                              <p class="v">v4.0.0</p>
                             </div>
                           </div>
                         </div>
@@ -3375,6 +3761,70 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                     </div>
                   </div>
 
+                  <!-- 插件 -->
+                  <div class="am-view" data-vp="plugins" hidden>
+                    <header class="am-vhead">
+                      <div style="min-width:0">
+                        <p class="t" data-zh="插件" data-en="Plugins">插件</p>
+                        <p class="s" data-zh="站点级功能扩展,应用于全站所有页面,与主题无关。"
+                          data-en="Site-level extensions applied to every page, independent of themes.">
+                        </p>
+                      </div>
+                      <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+                        <button class="am-btn am-btn-secondary" type="button"><i class="am-ic" data-icon="download"
+                            data-size="15" aria-hidden="true"></i><span data-zh="导入插件"
+                            data-en="Import plugin">导入插件</span></button>
+                      </div>
+                    </header>
+                    <div class="am-pscrollpage">
+                      <div class="am-pwrap">
+                        <h2 class="am-flabel" data-zh="内置插件" data-en="Built-in plugins">内置插件</h2>
+                        <div class="am-pgrid">
+                          <section class="am-pcard">
+                            <header>
+                              <div style="min-width:0">
+                                <p class="nm">站内搜索 <span class="vv">v1.2.0</span></p>
+                                <p class="dv">MogroWang Studio</p>
+                              </div>
+                              <span class="am-switch on" role="switch" aria-checked="true"><i></i></span>
+                            </header>
+                            <p class="am-fhint" style="margin:0" data-zh="构建时生成全站索引,页内即搜即达(⌘/Ctrl+K)。"
+                              data-en="Builds a site-wide index; search as you type (⌘/Ctrl+K).">
+                            </p>
+                            <footer>
+                              <button class="am-btn am-btn-ghost am-btn-sm" type="button"><span data-zh="配置"
+                                  data-en="Configure">配置</span></button>
+                              <button class="am-btn am-btn-ghost am-btn-sm" type="button"><span data-zh="复制为自定义"
+                                  data-en="Duplicate as custom">复制为自定义</span></button>
+                            </footer>
+                          </section>
+                          <section class="am-pcard">
+                            <header>
+                              <div style="min-width:0">
+                                <p class="nm">图片预览 <span class="vv">v1.3.0</span></p>
+                                <p class="dv">MogroWang Studio</p>
+                              </div>
+                              <span class="am-switch on" role="switch" aria-checked="true"><i></i></span>
+                            </header>
+                            <p class="am-fhint" style="margin:0" data-zh="点击正文图片进入灯箱,可缩放、旋转与下载。"
+                              data-en="Click any image for a lightbox with zoom, rotate and download.">
+                            </p>
+                            <footer>
+                              <button class="am-btn am-btn-ghost am-btn-sm" type="button"><span data-zh="配置"
+                                  data-en="Configure">配置</span></button>
+                              <button class="am-btn am-btn-ghost am-btn-sm" type="button"><span data-zh="复制为自定义"
+                                  data-en="Duplicate as custom">复制为自定义</span></button>
+                            </footer>
+                          </section>
+                        </div>
+                        <h2 class="am-flabel" style="margin-top:24px" data-zh="自定义插件" data-en="Custom plugins">自定义插件</h2>
+                        <p class="am-fhint" data-zh="还没有自定义插件。导入 .js / .css 文件,或把内置插件复制下来修改与二次开发。"
+                          data-en="No custom plugins yet. Import .js / .css files, or duplicate a built-in plugin to remix it.">
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <!-- 发布 -->
                   <div class="am-view" data-vp="publish" hidden>
                     <div class="am-scroll">
@@ -3389,12 +3839,18 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
 
                         <section class="am-panel am-p24">
                           <div class="am-fgap">
+                            <div>
+                              <label class="am-flabel" data-zh="账户类型" data-en="Account type">账户类型</label>
+                              <div class="am-seg" role="group" aria-label="账户类型">
+                                <button class="on" type="button" data-zh="个人用户" data-en="Personal">个人用户</button>
+                                <button type="button" data-zh="组织" data-en="Organization">组织</button>
+                              </div>
+                            </div>
                             <div class="am-grid2">
                               <div>
-                                <label class="am-flabel" data-zh="用户名 / 组织" data-en="User / organization">用户名 /
-                                  组织</label>
-                                <input class="am-input" type="text" readonly data-zh-placeholder="GitHub 用户名或组织名"
-                                  data-en-placeholder="GitHub username or org">
+                                <label class="am-flabel" data-zh="用户名" data-en="Username">用户名</label>
+                                <input class="am-input" type="text" readonly data-zh-placeholder="GitHub 用户名"
+                                  data-en-placeholder="GitHub username">
                               </div>
                               <div>
                                 <label class="am-flabel" data-zh="仓库名" data-en="Repository">仓库名</label>
@@ -3407,12 +3863,28 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
                               <input class="am-input" type="text" readonly style="width:192px" placeholder="gh-pages">
                             </div>
                             <div>
+                              <label class="am-flabel" data-zh="自定义域名" data-en="Custom domain">自定义域名</label>
+                              <input class="am-input" type="text" readonly style="width:280px"
+                                data-zh-placeholder="docs.example.com,留空保留云端域名"
+                                data-en-placeholder="docs.example.com, empty keeps the cloud domain">
+                            </div>
+                            <div>
                               <label class="am-flabel" data-zh="访问令牌(Token)" data-en="Access token">访问令牌(Token)</label>
                               <input class="am-input mono" type="password" readonly data-zh-placeholder="ghp_… 或 github_pat_…"
                                 data-en-placeholder="ghp_… or github_pat_…">
                               <p class="am-fhint"
                                 data-zh="需要 repo 权限。令牌只保存在本站点文件夹的 .plainstruct/github.json 中,不会上传。"
                                 data-en="Needs the repo scope. Stored only in this site's .plainstruct/github.json, never uploaded.">
+                              </p>
+                            </div>
+                            <div>
+                              <label class="am-flabel" data-zh="代理" data-en="Proxy">代理</label>
+                              <div class="am-select" style="width:280px"><span data-zh="跟随系统"
+                                  data-en="Follow system">跟随系统</span><i class="am-ic" data-icon="chevronDown"
+                                  data-size="14" aria-hidden="true"></i></div>
+                              <p class="am-fhint"
+                                data-zh="可选不使用代理或自定义代理,填 VPN 等软件的 HTTP / SOCKS5 端口,加速 GitHub 上传。"
+                                data-en="Or pick a custom proxy — the HTTP / SOCKS5 port of your VPN — to speed up uploads.">
                               </p>
                             </div>
                             <label class="am-checkrow"><input type="checkbox" class="am-check"><span data-zh="仓库不存在时自动创建公开仓库"
@@ -3453,9 +3925,11 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
       <h2 data-reveal data-zh="写作与预览，左右对照。" data-en="Write and preview, side by side"></h2>
       <p data-reveal style="--i:1"
         data-zh="左边写 Markdown，右边看渲染结果，滚动按比例同步。
-标题、列表、表格、代码块，工具栏一键插入，也支持快捷键。
-自动保存随时待命，写多少存多少。"
-        data-en="Markdown on the left, the rendered page on the right, with proportional scroll sync. Headings, lists, tables and code blocks are one click away on the toolbar, with keyboard shortcuts. Autosave is always on.">
+标题、列表、表格、代码块，工具栏一键插入，光标所在的格式还会让按钮亮起。
+⌘/Ctrl+F 呼出自绘的查找替换面板，支持区分大小写与正则表达式；
+插入图片与链接各有配置弹窗，尺寸、对齐与新窗口打开都可填。
+自动保存随时待命，停止输入后倒计时落盘。"
+        data-en="Markdown on the left, the rendered page on the right, with proportional scroll sync. Headings, lists, tables and code blocks are one click away, and buttons light up to match the format under your caret. ⌘/Ctrl+F opens a custom find-and-replace panel with case and regex toggles; images and links get their own configure dialogs for size, alignment and target. Autosave counts down and lands your draft as you pause.">
       </p>
 
       <h2 data-reveal data-zh="预览即产物。" data-en="The preview is the product"></h2>
@@ -3478,12 +3952,22 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
       <h2 data-reveal data-zh="内容管理，拖拽即所得。" data-en="Content, arranged by drag"></h2>
       <p data-reveal style="--i:1"
         data-zh="文件夹与文档都在左侧文件树里：新建、重命名、删除进回收站、批量导入。
-把文档拖到目标行的上/下边缘即可手动排序，多选还能成组移动。"
-        data-en="Folders and documents live in the tree on the left: create, rename, delete to trash, import in batches. Drag a document to a row’s top or bottom edge to reorder, and move a whole multi-selection as a group.">
+把文档拖到目标行的上/下边缘即可手动排序，多选还能成组移动。
+标题、描述、日期、封面、标签、作者署名，都可在「编辑配置头」表单里可视化填写。"
+        data-en="Folders and documents live in the tree on the left: create, rename, delete to trash, import in batches. Drag a document to a row’s top or bottom edge to reorder, and move a whole multi-selection as a group. Titles, descriptions, dates, covers, tags and authors are all editable in the visual front-matter form.">
       </p>
       <p data-reveal style="--i:2"
-        data-zh="你排出的顺序就是站点的顺序：导航、目录页与上/下篇都按它输出。"
-        data-en="The order you arrange is the order the site ships: navigation, directory pages and prev/next links all follow it.">
+        data-zh="你排出的顺序就是站点的顺序：导航、目录页与上/下篇都按它输出。
+图片与文件集中在「资产」页管理，从资产栏拖一张图到正文，引用自动就位。"
+        data-en="The order you arrange is the order the site ships: navigation, directory pages and prev/next links all follow it. Images and files live in the Assets page — drag one from the asset bar into the text and the reference lands itself.">
+      </p>
+
+      <h2 data-reveal data-zh="两类站点，十款主题。" data-en="Two site types, ten themes"></h2>
+      <p data-reveal style="--i:1"
+        data-zh="新建站点时选「文档站点」或「博客站点」，随时可切换。
+博客站点自带文章卡片流、分页、页内目录、归档页与文章标签，封面图、作者署名与 AIGC 声明一一就位；
+文档站点保持侧栏目录导航，适合知识库与产品手册。"
+        data-en="Pick “docs site” or “blog site” when creating — switchable any time. Blogs ship with a card stream, pagination, a per-article table of contents, an archive page and post tags, plus covers, authors and AIGC labels; docs sites keep the sidebar tree for knowledge bases and handbooks.">
       </p>
 
       <h2 data-reveal data-zh="一键构建，去哪都不乱。" data-en="One-click build, links stay put"></h2>
@@ -3493,14 +3977,15 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
         data-en="The build output is plain static HTML where every internal link and asset is relative. Deploy to a GitHub Pages subpath, a custom domain, or just double-click the file - nothing breaks.">
       </p>
       <p data-reveal style="--i:2"
-        data-zh="没有 index.md 的文件夹会自动生成目录列表页；构建时还会全量校验站内链接，失效的链接直接列在报告里。"
-        data-en="Folders without an index.md get a generated listing page; a full link check runs at build time and broken links are listed in the report.">
+        data-zh="没有 index.md 的文件夹会自动生成目录列表页；构建时还会全量校验站内链接，失效的链接直接列在报告里。
+保存与主题改动后自动重建，独立预览窗口还能切到移动端——二十多种机型预设，触摸与侧滑返回都是真的。"
+        data-en="Folders without an index.md get a generated listing page; a full link check runs at build time and broken links are listed in the report. Saving and theme changes rebuild automatically, and the standalone preview window switches to mobile — twenty-plus device presets with real touch events and side-swipe back.">
       </p>
 
       <h2 data-reveal data-zh="从零到发布，五步。" data-en="From zero to published, in five steps"></h2>
       <ul class="items" data-reveal style="--i:2">
-        <li><b data-zh="新建站点" data-en="New site"></b><span data-zh="填一个名字，选一个空文件夹。"
-            data-en="Pick a name and an empty folder."></span></li>
+        <li><b data-zh="新建站点" data-en="New site"></b><span data-zh="选文档站点或博客站点，填一个名字，选一个空文件夹。"
+            data-en="Pick a docs or blog site, a name and an empty folder."></span></li>
         <li><b data-zh="写作" data-en="Write"></b><span data-zh="在文件树里新建文档，直接写 Markdown。"
             data-en="Create documents in the tree and write Markdown."></span></li>
         <li><b data-zh="构建" data-en="Build"></b><span data-zh="一键构建，在独立预览窗口里查看最终站点。"
@@ -3513,9 +3998,20 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
 
       <h2 data-reveal data-zh="主题，可配可造。" data-en="Themes: tweak or craft"></h2>
       <p data-reveal style="--i:1"
-        data-zh="内置浅色与暗色两套主题，移动端自适应，九种页面过渡动画。
-可视化面板调整颜色、字号与开关；想更深入，就在主题制作器里改模板与样式，实时预览，打包成 ZIP 导入导出。"
-        data-en="Two built-in themes, light and dark, mobile-friendly, with nine page-transition presets. Tune colors, sizes and toggles in the visual panel - or go deeper in the theme editor with live preview, and share themes as ZIP files.">
+        data-zh="内置十款主题：文档站点用「素构 · 浅色 / 暗色」「墨阅」「终端」「画廊」，
+博客站点用「素记 · 浅色 / 深色」「专栏」「日志」「留白」，移动端自适应，十款全部具备页面过渡动画。
+可视化面板按分类分组，颜色、字号、悬停反馈、卡片阴影与页脚都可调，取色器拖动即所得；
+想更深入，就在主题制作器里改模板与样式，实时预览，打包成 ZIP 导入导出。"
+        data-en="Ten built-in themes: “素构 Light/Dark”, “墨阅”, “终端” and “画廊” for docs sites; “素记 Light/Dark”, “专栏”, “日志” and “留白” for blogs. All are mobile-friendly with page-transition presets. The visual panel groups settings by category — colors, sizes, hover feedback, card shadows and footers are all tunable with a drag-to-pick color picker - or go deeper in the theme editor with live preview, and share themes as ZIP files.">
+      </p>
+
+      <h2 data-reveal data-zh="插件，站点级扩展。" data-en="Plugins: site-level extensions"></h2>
+      <p data-reveal style="--i:1"
+        data-zh="插件与主题解耦，在独立的插件页统一管理，应用于全站所有页面。
+内置「站内搜索」——⌘/Ctrl+K 呼出，输入即搜、命中片段高亮；
+内置「图片预览」——点击正文图片进入灯箱，缩放、旋转、下载，还支持像素级渲染。
+导入任意 .js / .css 即成为自定义插件，也可以把内置插件复制下来二次开发。"
+        data-en="Plugins are decoupled from themes and managed on their own page, applying site-wide. Built-in “Site search” opens with ⌘/Ctrl+K and highlights matches as you type; built-in “Image preview” turns any image into a lightbox with zoom, rotation, download and pixel-perfect rendering. Import any .js / .css as a custom plugin, or duplicate a built-in one to remix.">
       </p>
     </section>
 
@@ -3530,9 +4026,10 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
     <section class="prose">
       <h2 data-reveal data-zh="发布，不需要 Git。" data-en="Publish, no Git required"></h2>
       <p data-reveal style="--i:1"
-        data-zh="在发布页填入 GitHub 用户名、仓库名与个人访问令牌，构建结果会作为单次原子提交推送上去。
-仓库、分支与 Pages 会自动创建，全程不需要安装 Git，也不需要敲命令。"
-        data-en="Fill in your GitHub username, repo and a personal access token, and the build is pushed as a single atomic commit. The repo, branch and Pages are created for you - no Git, no terminal.">
+        data-zh="在发布页填入 GitHub 用户名（或组织名）、仓库名与个人访问令牌，构建结果作为单次原子提交推送上去。
+仓库、分支与 Pages 会自动创建，重复发布走增量对比，只上传真正变化的文件；
+自定义域名直接在发布页填写，GitHub 直连缓慢还可以走自己的代理。"
+        data-en="Fill in your GitHub username (or org), repo and a personal access token, and the build is pushed as a single atomic commit. The repo, branch and Pages are created for you; republishing diffs against the cloud and uploads only what changed. Custom domains are set right on the page, and a slow GitHub connection can go through your own proxy.">
       </p>
       <p data-reveal style="--i:2"
         data-zh="令牌只保存在你自己站点文件夹的 <code>.plainstruct/github.json</code> 里，不会上传到任何地方。"
@@ -3541,9 +4038,9 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
 
       <h2 data-reveal data-zh="资料，都在你手上。" data-en="Your data, in your hands"></h2>
       <p data-reveal style="--i:1"
-        data-zh="素构没有后端，也不联网。
+        data-zh="素构没有后端，写作与构建都在本地完成。
 所有内容都保存在你选择的站点文件夹里，备份就是复制文件夹。"
-        data-en="Plainstruct has no backend and makes no network calls. Everything lives in the site folder you chose - backing up is copying that folder.">
+        data-en="Plainstruct has no backend — writing and building happen on your machine. Everything lives in the site folder you chose - backing up is copying that folder.">
       </p>
       <p data-reveal style="--i:2"
         data-zh="文档就是普通的 Markdown 文件，随时可以用其他编辑器打开；无遥测、无锁定，哪天不用了，删掉文件夹即可。"
@@ -3555,11 +4052,11 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
       <h2 data-reveal data-zh="下载素构" data-en="Download Plainstruct"></h2>
       <div class="dl" data-reveal style="--i:1">
         <a href="https://github.com/MogroWang/Plainstruct/releases" target="_blank" rel="noopener"><span>Windows
-            x64</span><span class="v" data-zh="NSIS 安装包 · 免安装便携版" data-en="NSIS installer · portable">NSIS 安装包 ·
-            免安装便携版</span></a>
+            x64</span><span class="v" data-zh="免安装便携版 · 解压即用" data-en="Portable · unzip and run">免安装便携版 ·
+            解压即用</span></a>
         <a href="https://github.com/MogroWang/Plainstruct/releases" target="_blank" rel="noopener"><span>macOS</span><span
-            class="v" data-zh="Apple Silicon · dmg 磁盘镜像" data-en="Apple Silicon · dmg">Apple Silicon · dmg
-            磁盘镜像</span></a>
+            class="v" data-zh="Apple Silicon · dmg / zip，附损坏修复脚本" data-en="Apple Silicon · dmg / zip with a repair script">Apple
+            Silicon · dmg / zip，附损坏修复脚本</span></a>
         <a href="https://github.com/MogroWang/Plainstruct" target="_blank" rel="noopener"><span data-zh="源代码"
             data-en="Source">源代码</span><span class="v">GitHub</span></a>
       </div>
@@ -3567,7 +4064,7 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
   </main>
 
   <footer>
-    <span>© 2026 MogroWang Studio · Plainstruct · v20260902</span>
+    <span>© 2026 MogroWang Studio · Plainstruct · v20261014</span>
     <span class="links">
       <a href="https://github.com/MogroWang/Plainstruct" target="_blank" rel="noopener">GitHub</a>
       <a href="https://github.com/MogroWang/Plainstruct/releases" target="_blank" rel="noopener"
@@ -3779,7 +4276,18 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
         external: ["M14 4h6v6", "M20 4L10 14", "M18 13v6H5V6h6"],
         restore: ["M8 8h11v11H8z", "M5 16V5h11"],
         refresh: ["M20 12a8 8 0 1 1-2.3-5.6", "M20 4v5h-5"],
-        copy: ["M9 9h11v11H9z", "M5 15H4V4h11v1"]
+        copy: ["M9 9h11v11H9z", "M5 15H4V4h11v1"],
+        assets: ["M7.5 5.5H18a2 2 0 0 1 2 2V16", "M4 7.5h12.5a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5z", "M5 16.5l3.5-3.5 2.5 2.5 1.5-1.5 2.5 2.5", "M8.5 11h.01"],
+        puzzle: ["M10 3.5a1.5 1.5 0 0 1 3 0V5h3.5A1.5 1.5 0 0 1 18 6.5V10h1.5a1.5 1.5 0 0 1 0 3H18v3.5a1.5 1.5 0 0 1-1.5 1.5H13v1.5a1.5 1.5 0 0 1-3 0V18H5.5A1.5 1.5 0 0 1 4 16.5V13h-.5a1.5 1.5 0 0 1 0-3H4V6.5A1.5 1.5 0 0 1 5.5 5H10z"],
+        undo: ["M9 14L4 9l5-5", "M4 9h10.5a5.5 5.5 0 0 1 0 11H11"],
+        redo: ["M15 14l5-5-5-5", "M20 9H9.5a5.5 5.5 0 0 0 0 11H13"],
+        pencil: ["M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z", "M14.3 7.3l2.4 2.4"],
+        imgAlignLeft: ["M4 5h7", "M4 10h16v9H4z", "M4 16l5-4 4 3 3-2 4 3"],
+        imgAlignCenter: ["M8.5 5h7", "M4 10h16v9H4z", "M4 16l5-4 4 3 3-2 4 3"],
+        imgAlignRight: ["M13 5h7", "M4 10h16v9H4z", "M4 16l5-4 4 3 3-2 4 3"],
+        alignLeft: ["M4 6h16", "M4 12h11", "M4 18h7"],
+        alignCenter: ["M4 6h16", "M6.5 12h11", "M8.5 18h7"],
+        alignRight: ["M4 6h16", "M9 12h11", "M13 18h7"]
       };
 
       function svgFor(name, size) {
@@ -3796,8 +4304,8 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
         "index.md": {
           order: 0, dir: "",
           md: {
-            zh: "---\ntitle: 首页\norder: 0\n---\n\n# 欢迎使用素构\n\n素构(Plainstruct)是一个本地运行的静态文档站点创建器:文件夹里写 Markdown,一键构建,发布到 GitHub Pages。\n\n- 左侧文件树管理文件夹与文档\n- 编辑与实时预览左右对照\n- 构建产物使用相对链接,部署在任何路径都不会乱\n\n## 从这里开始\n\n- [快速开始](guide/quickstart.md)\n- [Markdown 语法示例](guide/markdown.md)\n- [关于素构](about.md)\n",
-            en: "---\ntitle: Home\norder: 0\n---\n\n# Welcome to Plainstruct\n\nPlainstruct is a local-first static docs site creator: write Markdown in a folder, build with one click, publish to GitHub Pages.\n\n- A file tree on the left manages folders and documents\n- Editor and live preview, side by side\n- Relative links in the build output - deploy under any path and nothing breaks\n\n## From here\n\n- [Quick start](guide/quickstart.md)\n- [Markdown examples](guide/markdown.md)\n- [About Plainstruct](about.md)\n"
+            zh: "---\ntitle: 首页\norder: 0\n---\n\n# 欢迎使用素构\n\n素构(Plainstruct)是一个本地运行的静态站点创建器:文档站与博客皆宜。文件夹里写 Markdown,一键构建,发布到 GitHub Pages。\n\n- 文档站点与博客站点两类,十款内置主题\n- 站内搜索与图片预览两款内置插件\n- 构建产物使用相对链接,部署在任何路径都不会乱\n\n## 从这里开始\n\n- [快速开始](guide/quickstart.md)\n- [Markdown 语法示例](guide/markdown.md)\n- [关于素构](about.md)\n",
+            en: "---\ntitle: Home\norder: 0\n---\n\n# Welcome to Plainstruct\n\nPlainstruct is a local-first static site creator for docs and blogs alike. Write Markdown in a folder, build with one click, publish to GitHub Pages.\n\n- Docs and blog sites, ten built-in themes\n- Built-in plugins: site search and image preview\n- Relative links in the build output - deploy under any path and nothing breaks\n\n## From here\n\n- [Quick start](guide/quickstart.md)\n- [Markdown examples](guide/markdown.md)\n- [About Plainstruct](about.md)\n"
           }
         },
         "guide/quickstart.md": {
@@ -3817,8 +4325,8 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
         "about.md": {
           order: 9, dir: "",
           md: {
-            zh: "---\ntitle: 关于素构\norder: 9\n---\n\n# 关于素构\n\n素构是一个门槛低、本地运行的静态文档站点创建器。\n\n- 技术栈:Vue 3 + TypeScript + Tauri\n- 全部数据保存在你选择的文件夹里\n- 主题为 ZIP 包,可导入导出\n",
-            en: "---\ntitle: About Plainstruct\norder: 9\n---\n\n# About Plainstruct\n\nPlainstruct is a local-first static docs site creator with a low barrier to entry.\n\n- Stack: Vue 3 + TypeScript + Tauri\n- All data stays in the site folder you chose\n- Themes are ZIP packages you can import and export\n"
+            zh: "---\ntitle: 关于素构\norder: 9\n---\n\n# 关于素构\n\n素构是一个门槛低、本地运行的静态站点创建器,文档站与博客皆宜。\n\n- 技术栈:Vue 3 + TypeScript + Tauri\n- 十款内置主题,插件与主题解耦、全局生效\n- 全部数据保存在你选择的文件夹里,主题为 ZIP 包可导入导出\n",
+            en: "---\ntitle: About Plainstruct\norder: 9\n---\n\n# About Plainstruct\n\nPlainstruct is a local-first static site creator with a low barrier to entry, for docs and blogs alike.\n\n- Stack: Vue 3 + TypeScript + Tauri\n- Ten built-in themes; plugins are theme-independent and site-wide\n- All data stays in the site folder you chose; themes are ZIP packages you can import and export\n"
           }
         }
       };
@@ -4033,7 +4541,7 @@ Write Markdown in folders, build with one click, preview locally, publish to Git
         var doc = DOCS[current];
         var parsed = parseDoc(doc.md[lang]);
         var apply = function () {
-          docTitleEl.textContent = parsed.title;
+          docTitleEl.textContent = current.split("/").pop();
           crumbsEl.innerHTML = (doc.dir ? "<span>" + esc(doc.dir) + '</span><span class="sep">/</span>' : "") + '<span class="cur">' + esc(parsed.title) + "</span>";
           codeEl.innerHTML = edCode(doc.md[lang]);
           pdocEl.innerHTML = '<h1 class="am-pt">' + esc(parsed.title) + '</h1><div class="am-pb">' + pvBlocks(parsed.body) + "</div>" + pagerHTML(lang, current);
