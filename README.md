@@ -26,13 +26,13 @@ assets/
   plainstruct-logo-full.svg         完整组合 logo(浅色背景用)
   plainstruct-logo-full-dark.svg    完整组合 logo(深色背景用)
   mogrowang-studio.svg              MogroWang Studio 署名
-  preview-markdown.png              编辑与预览对照截图(v4.1.0)
-  preview-theme.png                 主题配置面板截图(v4.1.0)
+  preview-markdown.png              编辑与预览对照截图(v4.3.0)
+  preview-theme.png                 主题配置面板截图(v4.3.0)
 ```
 
 ## 版本
 
-版本号按日期取数,格式 `YYYYMMDD`,更新记录见 [changelog.md](changelog.md)。当前版本:**20261014**,展示于页面底部。
+版本号按日期取数,格式 `YYYYMMDD`,更新记录见 [changelog.md](changelog.md)。当前版本:**20261027**,展示于页面底部。
 
 ## 相关链接
 
